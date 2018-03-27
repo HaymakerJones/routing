@@ -1,0 +1,31 @@
+<h1>Login Page</h1>
+
+<div *ngIf="message">
+    <p-message severity="warn" [text]="message"></p-message>
+</div>
+
+<form [formGroup]="loginForm" (ngSubmit)="login( loginForm.value )" *ngIf="!loginStatus">
+    <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-6">
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon">
+                    <i class="fa fa-user"></i>
+                </span>
+                <input type="text" pInputText [formControl]="loginForm.get('user')" placeholder="Username">
+            </div>
+        </div>
+        <div class="ui-g-12 ui-md-6">
+            <div class="ui-inputgroup">
+                <input type="password" pPassword [formControl]="loginForm.get('password')" placeholder="Password" />
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <button pButton label="Login"></button>
+        </div>
+    </div>
+</form>
+
+<div *ngIf="loginStatus">
+    Logged in
+    <a href (click)="logout()">Log out</a>
+</div>
